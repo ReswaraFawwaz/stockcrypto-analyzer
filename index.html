@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StockCrypto Analyzer - Real Time Analysis</title>
+    <meta name="description" content="Analisis real-time cryptocurrency dan saham dengan technical indicators">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <h1>StockCrypto Analyzer</h1>
+        <p>Analisis Real-Time untuk Stock & Cryptocurrency</p>
+    </header>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Search Section -->
+        <section class="search-section">
+            <div class="search-controls">
+                <select id="assetType" aria-label="Pilih tipe aset">
+                    <option value="crypto">Cryptocurrency</option>
+                    <option value="stock">Stock</option>
+                </select>
+                
+                <input type="text" id="symbolInput" placeholder="Masukkan symbol (contoh: BTC, AAPL)" aria-label="Symbol aset" />
+                
+                <select id="timeframe" aria-label="Pilih timeframe">
+                    <option value="1h">1 Jam</option>
+                    <option value="4h">4 Jam</option>
+                    <option value="1d">1 Hari</option>
+                    <option value="1w">1 Minggu</option>
+                </select>
+                
+                <button id="analyzeBtn" aria-label="Mulai analisis data">Analisis</button>
+            </div>
+        </section>
+
+        <!-- Status Message -->
+        <div id="statusMessage" class="status-message" style="display: none;" role="alert"></div>
+
+        <!-- Main Dashboard Grid -->
+        <div class="main-grid">
+            <!-- Price Display Card -->
+            <div class="card price-card">
+                <h2>Harga Real-Time</h2>
+                <div class="price-display">
+                    <div class="current-price" id="currentPrice">$0.00</div>
+                    <div class="price-change" id="priceChange">+0.00 (0.00%)</div>
+                    <div class="last-update" id="lastUpdate">Terakhir update: -</div>
+                </div>
+                <div class="price-stats">
+                    <div class="stat-item">
+                        <span class="stat-label">24h High:</span>
+                        <span class="stat-value" id="high24h">-</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">24h Low:</span>
+                        <span class="stat-value" id="low24h">-</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Volume:</span>
+                        <span class="stat-value" id="volume24h">-</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Stats Card -->
+            <div class="card stats-card">
+                <h2>Quick Stats</h2>
+                <div class="quick-stats">
+                    <div class="stat-box">
+                        <div class="stat-title">Market Cap</div>
+                        <div class="stat-number" id="marketCap">-</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-title">Rank</div>
+                        <div class="stat-number" id="marketRank">-</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-title">Supply</div>
+                        <div class="stat-number" id="supply">-</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Chart Section -->
+        <div class="chart-section">
+            <div class="card chart-card">
+                <h2>Grafik Harga</h2>
+                <div id="chartContainer">
+                    <canvas id="priceChart" aria-label="Grafik pergerakan harga"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Analysis Sections -->
+        <div class="analysis-grid">
+            <!-- Technical Analysis -->
+            <div class="card technical-analysis">
+                <h2>📈 Analisis Teknikal</h2>
+                <div class="analysis-content">
+                    <div class="indicator-section">
+                        <h3>Indikator Utama</h3>
+                        <div class="indicators">
+                            <div class="indicator-item">
+                                <span class="indicator-name">RSI (14):</span>
+                                <span class="indicator-value" id="rsi">-</span>
+                                <span class="indicator-signal" id="rsiSignal">-</span>
+                            </div>
+                            <div class="indicator-item">
+                                <span class="indicator-name">MACD:</span>
+                                <span class="indicator-value" id="macd">-</span>
+                                <span class="indicator-signal" id="macdSignal">-</span>
+                            </div>
+                            <div class="indicator-item">
+                                <span class="indicator-name">Moving Avg:</span>
+                                <span class="indicator-value" id="ma">-</span>
+                                <span class="indicator-signal" id="maSignal">-</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="support-resistance">
+                        <h3>Support & Resistance</h3>
+                        <div class="sr-levels">
+                            <div class="sr-item">
+                                <span>Resistance:</span>
+                                <span id="resistance1">-</span>
+                            </div>
+                            <div class="sr-item">
+                                <span>Support:</span>
+                                <span id="support1">-</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="technical-summary">
+                        <h3>Kesimpulan</h3>
+                        <div class="summary-badge" id="technicalSummary">Netral</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Trading Signals -->
+            <div class="card trading-signals">
+                <h2>⚡ Trading Signals</h2>
+                <div class="signals-content">
+                    <div class="current-signal">
+                        <h3>Signal Aktif</h3>
+                        <div class="signal-badge" id="currentSignal">HOLD</div>
+                        <div class="signal-strength" id="signalStrength">Kekuatan: Medium</div>
+                    </div>
+                    
+                    <div class="entry-exit-points">
+                        <h3>Entry/Exit Points</h3>
+                        <div class="points">
+                            <div class="point-item">
+                                <span>Entry Point:</span>
+                                <span id="entryPoint">-</span>
+                            </div>
+                            <div class="point-item">
+                                <span>Stop Loss:</span>
+                                <span id="stopLoss">-</span>
+                            </div>
+                            <div class="point-item">
+                                <span>Take Profit:</span>
+                                <span id="takeProfit">-</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Prediction Section -->
+            <div class="card prediction-section">
+                <h2>🔮 Prediksi & Outlook</h2>
+                <div class="prediction-content">
+                    <div class="prediction-timeframes">
+                        <div class="prediction-item">
+                            <h3>Short Term (1-7 hari)</h3>
+                            <div class="prediction-result" id="shortTermPrediction">
+                                <div class="prediction-direction">-</div>
+                                <div class="prediction-confidence">Confidence: -%</div>
+                            </div>
+                        </div>
+                        
+                        <div class="prediction-item">
+                            <h3>Medium Term (1-4 minggu)</h3>
+                            <div class="prediction-result" id="mediumTermPrediction">
+                                <div class="prediction-direction">-</div>
+                                <div class="prediction-confidence">Confidence: -%</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="price-targets">
+                        <h3>Target Harga</h3>
+                        <div class="targets">
+                            <div class="target-item bullish">
+                                <span>Target Bullish:</span>
+                                <span id="bullishTarget">-</span>
+                            </div>
+                            <div class="target-item bearish">
+                                <span>Target Bearish:</span>
+                                <span id="bearishTarget">-</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="risk-assessment">
+                        <h3>Risk Level</h3>
+                        <div class="risk-level" id="riskLevel">Medium Risk</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Market Overview -->
+            <div class="card market-overview">
+                <h2>🌍 Market Overview</h2>
+                <div class="overview-content">
+                    <div class="market-indices">
+                        <h3>Indeks Utama</h3>
+                        <div class="indices-list" id="marketIndices">
+                            <div class="index-item">
+                                <span>Fear & Greed:</span>
+                                <span id="fearGreedIndex">-</span>
+                            </div>
+                            <div class="index-item">
+                                <span>VIX:</span>
+                                <span id="vixIndex">-</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Watchlist Section -->
+        <div class="watchlist-section">
+            <div class="card watchlist-card">
+                <h2>⭐ Watchlist</h2>
+                <div class="watchlist-controls">
+                    <input type="text" id="watchlistInput" placeholder="Tambah symbol ke watchlist" aria-label="Input symbol untuk watchlist">
+                    <button id="addToWatchlist" aria-label="Tambahkan ke watchlist">Tambah</button>
+                </div>
+                <div class="watchlist-items" id="watchlistItems">
+                    <p>Watchlist kosong. Tambahkan symbol untuk monitoring.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,662 @@
+/* Reset dan Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #333;
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+/* Header */
+header {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 1.5rem 0;
+    text-align: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    margin-bottom: 2rem;
+}
+
+header h1 {
+    color: white;
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+header p {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.1rem;
+    font-weight: 400;
+}
+
+/* Container */
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+/* Card Base Style */
+.card {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border-radius: 16px;
+    padding: 1.5rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+.card h2 {
+    color: #2d3748;
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid #e2e8f0;
+    padding-bottom: 0.5rem;
+}
+
+/* Search Section */
+.search-section {
+    margin-bottom: 2rem;
+}
+
+.search-controls {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 1.5rem;
+    border-radius: 16px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    flex-wrap: wrap;
+}
+
+.search-controls select,
+.search-controls input {
+    padding: 0.75rem 1rem;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background: white;
+    min-width: 150px;
+}
+
+.search-controls select:focus,
+.search-controls input:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.search-controls button {
+    padding: 0.75rem 2rem;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.search-controls button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+/* Status Message */
+.status-message {
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 12px;
+    font-weight: 500;
+    text-align: center;
+}
+
+.status-message.success {
+    background: rgba(72, 187, 120, 0.1);
+    color: #2f855a;
+    border: 1px solid rgba(72, 187, 120, 0.3);
+}
+
+.status-message.error {
+    background: rgba(245, 101, 101, 0.1);
+    color: #c53030;
+    border: 1px solid rgba(245, 101, 101, 0.3);
+}
+
+/* Main Grid */
+.main-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+/* Price Display */
+.price-display {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.current-price {
+    font-size: 3rem;
+    font-weight: 800;
+    color: #2d3748;
+    margin-bottom: 0.5rem;
+}
+
+.price-change {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.price-change.positive {
+    color: #38a169;
+}
+
+.price-change.negative {
+    color: #e53e3e;
+}
+
+.last-update {
+    color: #718096;
+    font-size: 0.9rem;
+}
+
+.price-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.stat-item {
+    text-align: center;
+    padding: 0.75rem;
+    background: rgba(102, 126, 234, 0.05);
+    border-radius: 8px;
+}
+
+.stat-label {
+    display: block;
+    font-size: 0.8rem;
+    color: #718096;
+    margin-bottom: 0.25rem;
+}
+
+.stat-value {
+    font-weight: 600;
+    color: #2d3748;
+}
+
+/* Quick Stats */
+.quick-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+}
+
+.stat-box {
+    text-align: center;
+    padding: 1rem;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-radius: 12px;
+}
+
+.stat-title {
+    font-size: 0.9rem;
+    opacity: 0.9;
+    margin-bottom: 0.5rem;
+}
+
+.stat-number {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+/* Chart Section */
+.chart-section {
+    margin-bottom: 2rem;
+}
+
+.chart-card {
+    padding: 2rem;
+}
+
+#chartContainer {
+    position: relative;
+    height: 400px;
+    margin-top: 1rem;
+}
+
+#priceChart {
+    width: 100%;
+    height: 100%;
+}
+
+/* Analysis Grid */
+.analysis-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+/* Technical Analysis */
+.indicators {
+    margin-bottom: 1.5rem;
+}
+
+.indicator-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem;
+    margin-bottom: 0.5rem;
+    background: rgba(102, 126, 234, 0.05);
+    border-radius: 8px;
+}
+
+.indicator-name {
+    font-weight: 600;
+    color: #2d3748;
+}
+
+.indicator-value {
+    font-weight: 700;
+    color: #4a5568;
+}
+
+.indicator-signal {
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.indicator-signal.bullish {
+    background: #38a169;
+    color: white;
+}
+
+.indicator-signal.bearish {
+    background: #e53e3e;
+    color: white;
+}
+
+.indicator-signal.neutral {
+    background: #718096;
+    color: white;
+}
+
+/* Support & Resistance */
+.sr-levels {
+    margin-bottom: 1.5rem;
+}
+
+.sr-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.75rem;
+    margin-bottom: 0.5rem;
+    background: rgba(102, 126, 234, 0.05);
+    border-radius: 8px;
+}
+
+/* Technical Summary */
+.summary-badge {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    border-radius: 25px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.summary-badge.bullish {
+    background: linear-gradient(135deg, #38a169, #48bb78);
+    color: white;
+}
+
+.summary-badge.bearish {
+    background: linear-gradient(135deg, #e53e3e, #f56565);
+    color: white;
+}
+
+.summary-badge.neutral {
+    background: linear-gradient(135deg, #718096, #a0aec0);
+    color: white;
+}
+
+/* Trading Signals */
+.current-signal {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.signal-badge {
+    display: inline-block;
+    padding: 1rem 2rem;
+    border-radius: 25px;
+    font-size: 1.2rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+}
+
+.signal-badge.buy {
+    background: linear-gradient(135deg, #38a169, #48bb78);
+    color: white;
+}
+
+.signal-badge.sell {
+    background: linear-gradient(135deg, #e53e3e, #f56565);
+    color: white;
+}
+
+.signal-badge.hold {
+    background: linear-gradient(135deg, #ecc94b, #f6e05e);
+    color: #744210;
+}
+
+.signal-strength {
+    color: #718096;
+    font-weight: 500;
+}
+
+/* Entry/Exit Points */
+.points {
+    display: grid;
+    gap: 0.75rem;
+}
+
+.point-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.75rem;
+    background: rgba(102, 126, 234, 0.05);
+    border-radius: 8px;
+}
+
+/* Prediction Section */
+.prediction-timeframes {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.prediction-item {
+    text-align: center;
+    padding: 1rem;
+    background: rgba(102, 126, 234, 0.05);
+    border-radius: 12px;
+}
+
+.prediction-item h3 {
+    color: #2d3748;
+    font-size: 1rem;
+    margin-bottom: 0.75rem;
+}
+
+.prediction-direction {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.prediction-confidence {
+    color: #718096;
+    font-size: 0.9rem;
+}
+
+/* Price Targets */
+.targets {
+    display: grid;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+}
+
+.target-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.75rem;
+    border-radius: 8px;
+}
+
+.target-item.bullish {
+    background: rgba(56, 161, 105, 0.1);
+    color: #2f855a;
+}
+
+.target-item.bearish {
+    background: rgba(229, 62, 62, 0.1);
+    color: #c53030;
+}
+
+/* Risk Assessment */
+.risk-level {
+    text-align: center;
+    padding: 1rem;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.risk-level.low {
+    background: rgba(56, 161, 105, 0.1);
+    color: #2f855a;
+}
+
+.risk-level.medium {
+    background: rgba(236, 201, 75, 0.1);
+    color: #b7791f;
+}
+
+.risk-level.high {
+    background: rgba(229, 62, 62, 0.1);
+    color: #c53030;
+}
+
+/* Market Overview */
+.indices-list {
+    display: grid;
+    gap: 0.75rem;
+}
+
+.index-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.75rem;
+    background: rgba(102, 126, 234, 0.05);
+    border-radius: 8px;
+}
+
+/* Watchlist */
+.watchlist-section {
+    margin-bottom: 2rem;
+}
+
+.watchlist-controls {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.watchlist-controls input {
+    flex: 1;
+    padding: 0.75rem;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    font-size: 1rem;
+}
+
+.watchlist-controls button {
+    padding: 0.75rem 1.5rem;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.watchlist-items {
+    display: grid;
+    gap: 0.75rem;
+}
+
+.watchlist-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background: rgba(102, 126, 234, 0.05);
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+.watchlist-item:hover {
+    background: rgba(102, 126, 234, 0.1);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 0.5rem;
+    }
+    
+    header h1 {
+        font-size: 2rem;
+    }
+    
+    .search-controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .search-controls select,
+    .search-controls input,
+    .search-controls button {
+        min-width: unset;
+        width: 100%;
+    }
+    
+    .main-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .current-price {
+        font-size: 2.5rem;
+    }
+    
+    .price-stats {
+        grid-template-columns: 1fr;
+    }
+    
+    .quick-stats {
+        grid-template-columns: 1fr;
+    }
+    
+    .analysis-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .prediction-timeframes {
+        grid-template-columns: 1fr;
+    }
+    
+    .watchlist-controls {
+        flex-direction: column;
+    }
+    
+    #chartContainer {
+        height: 300px;
+    }
+}
+
+@media (max-width: 480px) {
+    .card {
+        padding: 1rem;
+    }
+    
+    header {
+        padding: 1rem 0;
+    }
+    
+    header h1 {
+        font-size: 1.8rem;
+    }
+    
+    .current-price {
+        font-size: 2rem;
+    }
+    
+    .signal-badge {
+        padding: 0.75rem 1.5rem;
+        font-size: 1rem;
+    }
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.card {
+    animation: fadeIn 0.6s ease-out;
+}
+
+/* Loading States */
+.loading {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin: -10px 0 0 -10px;
+    border: 2px solid #667eea;
+    border-radius: 50%;
+    border-top-color: transparent;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
